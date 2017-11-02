@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тест на javascript</title>
+<style>
+body{
+	font-family: verdana;
+	color:#444;
+	background: url(fon.png);
+}
+#option1,#option2,#option3,#option4{
+	display:none;
+	margin-bottom: 10px;
+}
+.button_class{
+    text-decoration: none;
+    font-size: 20px;
+    margin-left: 20px;
+    color: #fff;
+    background: #FF8000; <!-- #3C8FB7; -->
+    padding: 4px 8px;
+	border: 5;
+	cursor: pointer;
+	
+}
+
+h1 {
+color: #FFFFFF; /*#а52а2а; Цвет заголовка*/ 
+font-size: 14pt; /*Размер шрифта в пунктах*/ 
+font-family: Times New Roman, serif; 									/* Georgia, Times, serif;/*Семейство шрифтов*/ */
+font-weight: normal; /*Нормальное начертание текста*/
+margin: 15 20px 25;
+}
+</style>
+<script type="text/javascript">
+
+	//Массив вопросов и ответа
+	var data_array = [
+	  ["Аббревиатура ЧТЗ означает:","Черный товарный знак","че за трактор","Челябинский Тракторный Завод","человек и техническое задание",3],
+	  ["Сколько весит К-700?","700 тонн","3,14 тонн","много","11 тонн",4],
+	  ["А кто такие фиксики?", "большой большой секрет","болтики","ловите наркоманов!","герои ВОВ",1],
+	  ["Вы готовы дети???","Да капитааан!","нет","наверное","скорее всего",1],
+	  ["Я не слышууу!","Так точно капитан!","wtf","бвлбвлвб","я снимаю!",1],
+	  ["Почему бульдозеры так шумят?", "Задерживают зарплату","Некачественное топливо","Тракторист не помылся","Им так легче",4],];
+
+	var plus = 0;
+	var time = 0;
+	var cur_answer = 0;
+	var count_answer = data_array.length;
+	
+	function sec() {
+		time++;	
+		document.getElementById('time').innerHTML='Затрачено времени: ' + time + ' сек';
+	}
+	
+	function check(num){
+
+		if(num == 0){ 
+		
+			document.getElementById('option1').style.display='block';
+			document.getElementById('option2').style.display='block';
+			document.getElementById('option3').style.display='block';
+			document.getElementById('option4').style.display='block';
+			document.getElementById('question').style.display='block';
+
+			document.getElementById('option1').innerHTML=data_array[cur_answer][1];
+			document.getElementById('option2').innerHTML=data_array[cur_answer][2];
+			document.getElementById('option3').innerHTML=data_array[cur_answer][3];
+			document.getElementById('option4').innerHTML=data_array[cur_answer][4];
+			document.getElementById('question').innerHTML=data_array[cur_answer][0];
+			
+			document.getElementById('start').style.display='none';
+			document.getElementById('end').style.display='inline';
+			
+			var intervalID = setInterval(sec, 1000);
+			
+		}else{
+
+			if( num ==  data_array[cur_answer][5]){
+				plus++;
+				document.getElementById('result').innerHTML='Верно!';
+			}else{
+				document.getElementById('result').innerHTML="Неверно! <br> Правильный ответ: " + data_array[cur_answer][data_array[cur_answer][5]];
+			}
+				
+			cur_answer++;
+			if(cur_answer < count_answer){
+			
+				document.getElementById('option1').innerHTML=data_array[cur_answer][1];
+				document.getElementById('option2').innerHTML=data_array[cur_answer][2];
+				document.getElementById('option3').innerHTML=data_array[cur_answer][3];
+				document.getElementById('option4').innerHTML=data_array[cur_answer][4];
+				document.getElementById('question').innerHTML=data_array[cur_answer][0];
+				
+			}else{
+				
+				document.getElementById('time').id = 'stop';
+				document.getElementById('option1').style.display='none';
+				document.getElementById('option2').style.display='none';
+				document.getElementById('option3').style.display='none';
+				document.getElementById('option4').style.display='none';
+				document.getElementById('question').style.display='none';
+				document.getElementById('end').style.display='inline';
+				
+				var percent =  Math.round(plus/count_answer*100);				
+				var res = 'Плохо!';
+				if(percent>70) res = 'Хорошо!';
+				if(percent==100) res = 'Отлично!';
+				
+				document.getElementById('result').innerHTML='Правильных ответов: ' + plus + ' из ' + count_answer + ' (' + percent + '%)<br>' + res;
+			}
+		}
+	}
+</script>
+</head>
+<body>
+	<h1>    Фирменный тест</h1>
+	<!-- <center>			 -->
+		<p style="font-size: 38px;font-weight: bold;padding-top: 2px; color: #ffffff" id="time" align="center" >Затрачено времени: 0 сек</p>
+		<p style="font-size: 38px;font-weight: bold;padding-top: 2px; color: #ffffff" id="result" align="center"></p>					
+		<p style="font-size: 38px;font-weight: bold;padding-top: 2px; color: #ffffff" id="question" align="center"></p>
+		
+		<button onclick="check(1)" class="button_class" id="option1" align="left";></button>
+		
+		<button onclick="check(2)" class="button_class" id="option2" align="left";></button>
+		
+		<button onclick="check(3)" class="button_class" id="option3" align="left";></button>
+		
+		<button onclick="check(4)" class="button_class" id="option4" align="left";></button>
+	<!-- </center> --><br>
+	<center>
+		<button id="start" class="button_class" onclick="check(0)">Приступить к тесту</button>
+		<script type="text/javascript"> 
+			var curent_url = document.URL;
+			document.write("<a id='end' style='display: none;' class='button_class' href='" + curent_url + "'>Начать сначала</a>"); 
+		</script>	
+	</center><br><br>
+</body>
+</html>

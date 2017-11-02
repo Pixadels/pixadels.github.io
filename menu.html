@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<title>Menu</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Название документа</title>
+    <style>
+      #navbar {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        width: 150px;
+      }
+      #navbar li {
+        <!--border-left: 10px solid #666;-->
+        border-bottom: 1px solid #666;
+      }
+      #navbar a {
+		background: url(fon.png);
+        background-color: #949494;
+        color: #fff;
+        padding: 5px;
+        text-decoration: none;
+        font-weight: bold;
+		font-size: 14pt;
+        border-left: 5px solid <!-- #33ADFF -->;
+        display: block;
+      }
+      #navbar a:hover {
+        background-color: #666;
+        border-left: 5px solid #FF8000;
+      }
+	  #navbar, #navbar ul {
+		margin: 0;
+		padding: 10px;
+		list-style-type: none;
+	  }
+	  #navbar li { float: left; }
+	  #navbar ul li { float: none; }
+    </style>
+  </head>
+ 
+  <body style="background:url(fon.png);">	
+    <ul id="navbar">
+		<li><a target="body">Каталог</a>
+			<ul>
+				<li><a href="type1.html" target="body">Бульдозеры</a></li>
+				<li><a href="type2.html" target="body">Бульдозеры побольше</a></li>
+				<li><a href="type3.html" target="body">Без комментариев</a></li>
+			</ul>
+		</li>
+		<!-- <li><a href="galery.html" target="body">Галерея</a></li> -->
+		<li><a href="onas.html" target="body">О нас     </a></li>
+		<li><a href="contact.html" target="body">Контакты</a></li>
+		<li><a href="test.html" target="body">Тест</a></li>
+	</ul>
+ 
+  </body>
+</html>
